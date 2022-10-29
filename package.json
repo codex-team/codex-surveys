@@ -7,8 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "prettier": "yarn prettier --write .",
-    "lint": "yarn run eslint src"
+    "prettier": "./node_modules/.bin/prettier . --write",
+    "lint": "yarn run eslint src --fix"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.0.0",
@@ -21,6 +21,5 @@
     "typescript": "*",
     "vite": "^3.1.0"
   },
-  "main": "main.ts",
   "license": "MIT"
 }
