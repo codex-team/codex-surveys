@@ -1,15 +1,14 @@
 import { createSpan } from './helpers/factory'
-import * as styles from "./styles/collapsed"
 import { addCssToElement } from "./helpers/css"
+import classes from './styles/collapsed.module.css'
 
 function createWidget (): void {
   const container = document.createElement('div')
 
-  container.classList.add('container')
+  addCssToElement(container, classes.container)
 
-  addCssToElement(container, styles.container)
-  const titleContainer = createSpan('hide__container-title', 'Using Editor.js?', styles.title)
-  const descriptionContainer = createSpan('hide__container-description', 'Take a 2-minutes survey🙏', styles.description)
+  const titleContainer = createSpan('hide__container-title', 'Using Editor.js?', classes.title)
+  const descriptionContainer = createSpan('hide__container-description', 'Take a 2-minutes survey🙏', classes.description)
 
   container.appendChild(titleContainer)
   container.appendChild(descriptionContainer)

@@ -1,15 +1,15 @@
 import { addCssToElement } from "./css"
 
-export const createSpan = (className: string, title: string, styles: Partial<CSSStyleDeclaration>): Element => {
-  const titleContainer = document.createElement("span");
+export const createSpan = (className: string, title: string, styleName: string): Element => {
+  const titleContainer = document.createElement("span")
 
-  titleContainer.classList.add(className);
+  titleContainer.classList.add(className)
 
-  const titleValue = document.createTextNode(title);
+  const titleValue = document.createTextNode(title)
 
-  addCssToElement(titleContainer, styles)
+  addCssToElement(titleContainer, styleName)
 
-  titleContainer.appendChild(titleValue);
+  titleContainer.appendChild(titleValue)
 
-  return titleContainer;
+  return titleContainer
 };

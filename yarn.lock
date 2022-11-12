@@ -67,6 +67,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@types/gapi@^0.0.43":
+  version "0.0.43"
+  resolved "https://registry.npmjs.org/@types/gapi/-/gapi-0.0.43.tgz#5291ae831006240e3484bdef3fff8dd69baf5947"
+  integrity sha512-GbnoTC1psXR1XlBE76LW0eanE/a56iGUzbUOImEI8/xXHuppdbhhIKX9Z71mTut2XoFADh58PgfRg1cyD7TnTw==
+
 "@types/json-schema@^7.0.9":
   version "7.0.11"
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.11.tgz#d421b6c527a3037f7c84433fd2c4229e016863d3"
@@ -1535,6 +1540,11 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+vite-plugin-css-injected-by-js@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/vite-plugin-css-injected-by-js/-/vite-plugin-css-injected-by-js-2.1.1.tgz#a79275241c61f1c8d55d228f5b2dded450a580e4"
+  integrity sha512-gjIG6iFWde32oRr/bK9CsfN+jdbura2y4GlDzeOiEm6py38ud8dXzFl9zwmHjOjZdr8XEgQ9TovzVGNzp47esw==
 
 vite@^3.1.0:
   version "3.1.8"

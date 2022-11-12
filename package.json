@@ -19,7 +19,9 @@
     "eslint-plugin-promise": "^6.0.0",
     "prettier": "2.7.1",
     "typescript": "*",
-    "vite": "^3.1.0"
+    "vite": "^3.1.0",
+    "@types/gapi": "^0.0.43",
+    "vite-plugin-css-injected-by-js": "2.1.1"
   },
   "license": "MIT"
 }
