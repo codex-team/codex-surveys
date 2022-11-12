@@ -1,7 +1,11 @@
-import { addCssToElement } from "./css"
+import { addCssToElement } from './css'
 
-export const createSpan = (className: string, title: string, styleName: string): Element => {
-  const titleContainer = document.createElement("span")
+export const createSpan = (
+  className: string,
+  title: string,
+  styleName: string
+): Element => {
+  const titleContainer = document.createElement('span')
 
   titleContainer.classList.add(className)
 
@@ -12,4 +16,4 @@ export const createSpan = (className: string, title: string, styleName: string):
   titleContainer.appendChild(titleValue)
 
   return titleContainer
-};
+}
