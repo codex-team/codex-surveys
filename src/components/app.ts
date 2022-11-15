@@ -1,27 +1,22 @@
-import { createSpan } from './helpers/factory'
-import { addCssToElement } from './helpers/css'
-import classes from './styles/collapsed.module.css'
+import { createSpan, createDiv } from './helpers/htmlCreator';
+import classes from './styles/collapsed.module.css';
 
-function createWidget (): void {
-  const container = document.createElement('div')
+/**
+ * Create widget on the document
+ */
+function createWidget(): void {
+  const container = createDiv(classes.container);
 
-  addCssToElement(container, classes.container)
-
-  const titleContainer = createSpan(
-    'hide__container-title',
-    'Using Editor.js?',
-    classes.title
-  )
+  const titleContainer = createSpan('Using Editor.js?', classes.title);
   const descriptionContainer = createSpan(
-    'hide__container-description',
     'Take a 2-minutes survey🙏',
     classes.description
-  )
+  );
 
-  container.appendChild(titleContainer)
-  container.appendChild(descriptionContainer)
+  container.appendChild(titleContainer);
+  container.appendChild(descriptionContainer);
 
-  document.body.appendChild(container)
+  document.body.appendChild(container);
 }
 
-createWidget()
+createWidget();
