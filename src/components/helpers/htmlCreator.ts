@@ -8,7 +8,7 @@
  */
 function make(
   tagName: string,
-  classNames: string | string[] = null,
+  classNames: string | string[] = '',
   attributes: object = {}
 ): HTMLElement {
   const el = document.createElement(tagName);
