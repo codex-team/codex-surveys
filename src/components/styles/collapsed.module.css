@@ -1,19 +1,19 @@
 @value colors: "./tokens/colors.module.css";
-@value border-box-shadow, container-border, container-background from colors;
+@value color-box-shadow, color-border, color-background-primary from colors;
 
 .container {
   display: inline-flex;
   flex-direction: column;
   padding: 10px;
-  border: 1px solid container-border;
-  box-shadow: 0 7px 9px border-box-shadow;
+  border: 1px solid color-border;
+  box-shadow: 0 7px 9px color-box-shadow;
   border-radius: 10px;
   font-family: system-ui;
   bottom: 10px;
   right: 10px;
   position: fixed;
   z-index: 2147483647;
-  background: container-background;
+  background: color-background-primary;
 }
 
 .title {

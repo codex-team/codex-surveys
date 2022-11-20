@@ -6,7 +6,7 @@
  * @param  {object} [attributes] - any attributes
  * @returns {HTMLElement}
  */
-function make(
+export function make(
   tagName: string,
   classNames: string | string[] = '',
   attributes: object = {}
@@ -45,14 +45,4 @@ export const createSpan = (
   spanContainer.appendChild(titleValue);
 
   return spanContainer;
-};
-
-/**
- * Helper for making Div Element
- *
- * @param  {string[]|string} [classNames] - list or name of CSS classname(s)
- * @returns {HTMLDivElement}
- */
-export const createDiv = (classNames: string | string[]): HTMLDivElement => {
-  return make('div', classNames) as HTMLDivElement;
 };
