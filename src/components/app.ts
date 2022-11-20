@@ -1,4 +1,4 @@
-import { createSpan, make } from './helpers/htmlCreator';
+import { make } from './helpers/htmlCreator';
 import classes from './styles/collapsed.module.css';
 
 /**
@@ -7,11 +7,13 @@ import classes from './styles/collapsed.module.css';
 function createWidget(): void {
   const container = make('div', classes.container);
 
-  const titleContainer = createSpan('Using Editor.js?', classes.title);
-  const descriptionContainer = createSpan(
-    'Take a 2-minutes survey🙏',
-    classes.description
-  );
+  const titleContainer = make('span', classes.title, {
+    textContent: 'Using Editor.js?',
+  });
+
+  const descriptionContainer = make('span', classes.description, {
+    textContent: 'Take a 2-minutes survey🙏',
+  });
 
   container.appendChild(titleContainer);
   container.appendChild(descriptionContainer);

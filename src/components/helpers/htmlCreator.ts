@@ -27,22 +27,3 @@ export function make(
 
   return el;
 }
-
-/**
- * Helper for making Span Element with title
- *
- * @param  {string} title - title for span
- * @param  {string[]|string} [classNames] - list or name of CSS classname(s)
- * @returns {HTMLSpanElement}
- */
-export const createSpan = (
-  title: string,
-  classNames: string | string[]
-): HTMLSpanElement => {
-  const spanContainer = make('span', classNames);
-  const titleValue = document.createTextNode(title);
-
-  spanContainer.appendChild(titleValue);
-
-  return spanContainer;
-};
