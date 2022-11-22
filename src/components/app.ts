@@ -1,5 +1,6 @@
 import { make } from './helpers/htmlCreator';
 import classes from './styles/collapsed.module.css';
+import { addItem } from "../services/Notion"
 
 /**
  * Create widget on the document
@@ -19,6 +20,8 @@ function createWidget(): void {
   container.appendChild(descriptionContainer);
 
   document.body.appendChild(container);
+
+  addItem("Privet Tanya")
 }
 
 createWidget();
