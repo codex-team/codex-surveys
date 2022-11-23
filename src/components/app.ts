@@ -21,7 +21,7 @@ function createWidget(): void {
 
   document.body.appendChild(container);
 
-  addItem("Privet Tanya")
+  addItem("Privet Tanya");
 }
 
 createWidget();
