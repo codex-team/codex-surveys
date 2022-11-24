@@ -22,7 +22,7 @@ export function make(
   Object.keys(attributes).forEach((prop) => {
     const attrName = prop as keyof HTMLElement;
 
-    // @ts-expect-error We don't send to function a read-only attributes but ts doesn't know about that
+    // @ts-expect-error read-only property assignment is possible, ts disalows it
     el[attrName] = attributes[attrName];
   });
 
