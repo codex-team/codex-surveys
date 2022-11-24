@@ -1,4 +1,4 @@
-import { make } from '../helpers/htmlCreator';
+import { make } from './utils';
 import classes from './styles/collapsed.module.css';
 
 /**
