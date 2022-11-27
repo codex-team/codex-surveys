@@ -9,7 +9,7 @@
 export function make(
   tagName: string,
   classNames: string | string[] = '',
-  attributes: object = {}
+  attributes: Record<string, string | number> = {}
 ): HTMLElement {
   const el = document.createElement(tagName);
 
@@ -19,11 +19,12 @@ export function make(
     el.classList.add(classNames);
   }
 
-  for (const attrName in attributes) {
-    if (Object.prototype.hasOwnProperty.call(attributes, attrName)) {
-      el[attrName] = attributes[attrName];
-    }
-  }
+  Object.keys(attributes).forEach((prop) => {
+    const attrName = prop as keyof HTMLElement;
+
+    // @ts-expect-error read-only property assignment is possible, ts disalows it
+    el[attrName] = attributes[attrName];
+  });
 
   return el;
 }
