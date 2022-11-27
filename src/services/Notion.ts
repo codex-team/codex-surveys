@@ -1,5 +1,5 @@
 import { Client, LogLevel } from "@notionhq/client";
-import * as constants from "./constans";
+import * as constants from "./constants";
 
 export async function addItem(text: string): Promise<void> {
     const notion = new Client({
