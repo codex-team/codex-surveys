@@ -1,6 +1,6 @@
 import { make } from './utils';
 import classes from './styles/collapsed.module.css';
-import { addItem } from "./services/Notion"
+import { addItem } from './services/Notion';
 
 /**
  * Create widget on the document
@@ -21,9 +21,9 @@ function createWidget(): void {
 
   document.body.appendChild(container);
 
-  container.addEventListener("click", () => {
-    addItem("Hello");
-  })
+  container.addEventListener('click', () => {
+    addItem('Hello');
+  });
 }
 
 createWidget();
