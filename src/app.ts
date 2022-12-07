@@ -1,4 +1,5 @@
-import { make, sendDataToNotion } from './utils';
+import { make } from './utils/make';
+import { sendDataToNotion } from './utils/notionHelpers';
 import classes from './styles/collapsed.module.css';
 
 /**

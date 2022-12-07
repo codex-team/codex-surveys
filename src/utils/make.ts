@@ -1,6 +1,3 @@
-import { exampleConfiguration } from './configuration';
-import { Notion } from './services/Notion';
-
 /**
  * Helper for making Elements with classname and attributes
  *
@@ -30,15 +27,4 @@ export function make(
   });
 
   return el;
-}
-
-/**
- * Send user's data to Notion
- *
- * @param {string} text - Text for request to database
- */
-export function sendDataToNotion(text: string): void {
-  const notion = new Notion(exampleConfiguration);
-
-  notion.sendData(text);
 }
