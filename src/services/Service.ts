@@ -1,5 +1,7 @@
 /**
  * Interface for sending data to different platforms
+ *
+ * @template T - type of configuration
  */
 export interface Service<T> {
   /**

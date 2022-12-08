@@ -10,6 +10,7 @@ export class Notion implements Service<NotionConfig> {
   /**
    * Create and returns a Notion instance.
    *
+   * @param configuration - Configuration for connection
    * @returns {Notion}
    */
   constructor(configuration: NotionConfig) {
@@ -19,15 +20,6 @@ export class Notion implements Service<NotionConfig> {
     }
 
     return Notion.instance;
-  }
-  /**
-   * Create a Notion interaction.
-   *
-   * @param {NotionConfig} configuration - Configuration for init client.
-   */
-  private init(configuration: NotionConfig): void {
-    this.configuration = configuration;
-    this.initClient();
   }
   /**
    * Send data to notion's database
@@ -56,6 +48,15 @@ export class Notion implements Service<NotionConfig> {
         },
       },
     });
+  }
+  /**
+   * Create a Notion interaction.
+   *
+   * @param {NotionConfig} configuration - Configuration for init client.
+   */
+  private init(configuration: NotionConfig): void {
+    this.configuration = configuration;
+    this.initClient();
   }
   /**
    * Authentication notion's client.
