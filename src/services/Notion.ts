@@ -16,7 +16,8 @@ export class Notion implements Service<NotionConfig> {
   constructor(configuration: NotionConfig) {
     if (!Notion.instance) {
       Notion.instance = this;
-      this.init(configuration);
+      this.configuration = configuration;
+      this.init();
     }
 
     return Notion.instance;
@@ -50,18 +51,9 @@ export class Notion implements Service<NotionConfig> {
     });
   }
   /**
-   * Create a Notion interaction.
-   *
-   * @param {NotionConfig} configuration - Configuration for init client.
+   *  Authentication notion's client.
    */
-  private init(configuration: NotionConfig): void {
-    this.configuration = configuration;
-    this.initClient();
-  }
-  /**
-   * Authentication notion's client.
-   */
-  private initClient(): void {
+  private init(): void {
     this.notion = new Client({
       auth: this.configuration?.notion.clientSecret,
     });
