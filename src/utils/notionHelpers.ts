@@ -7,7 +7,6 @@ import { Notion } from '../services/Notion';
  * @param {string} text - Text for request to database
  */
 export function sendDataToNotion(text: string): void {
-  console.log(exampleConfiguration)
   const notion = new Notion(exampleConfiguration);
 
   notion.sendData(text);

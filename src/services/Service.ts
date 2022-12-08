@@ -4,7 +4,7 @@
 export interface Service<T> {
   /**
    * Client config
-   * 
+   *
    * @param {T} configuration - Client configuration.
    */
   configuration?: T;

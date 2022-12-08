@@ -15,7 +15,7 @@ export class Notion implements Service<NotionConfig> {
   constructor(configuration: NotionConfig) {
     if (!Notion.instance) {
       Notion.instance = this;
-      this.init(configuration)
+      this.init(configuration);
     }
 
     return Notion.instance;
