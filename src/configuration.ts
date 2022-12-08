@@ -1,8 +1,8 @@
-import { Config } from './types';
+import { NotionConfig } from './services/Config';
 
-export const exampleConfiguration: Config = {
+export const exampleConfiguration: NotionConfig = {
   notion: {
-    databaseId: '',
-    clientSecret: '',
+    databaseId: import.meta.env.VITE_NOTION_DATABASE_ID || '',
+    clientSecret: import.meta.env.VITE_NOTION_CLIENT_SECRET || '',
   },
 };

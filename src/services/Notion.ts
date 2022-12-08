@@ -1,20 +1,21 @@
 import { Client } from '@notionhq/client';
-import { InterfaceAPI } from './types';
-import { Config } from '../types';
+import { Service } from './Service';
+import { NotionConfig } from './Config';
 
 /** Class representing an interaction with Notion. */
-export class Notion implements InterfaceAPI {
+export class Notion implements Service<NotionConfig> {
   public static instance: Notion;
   public notion: Client | null = null;
-  public configuration?: Config;
+  public configuration?: NotionConfig;
   /**
    * Create and returns a Notion instance.
    *
    * @returns {Notion}
    */
-  constructor() {
+  constructor(configuration: NotionConfig) {
     if (!Notion.instance) {
       Notion.instance = this;
+      this.init(configuration)
     }
 
     return Notion.instance;
@@ -22,9 +23,9 @@ export class Notion implements InterfaceAPI {
   /**
    * Create a Notion interaction.
    *
-   * @param {Config} configuration - Configuration for init client.
+   * @param {NotionConfig} configuration - Configuration for init client.
    */
-  public init(configuration: Config): void {
+  private init(configuration: NotionConfig): void {
     this.configuration = configuration;
     this.initClient();
   }
