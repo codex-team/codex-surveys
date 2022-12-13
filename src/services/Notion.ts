@@ -1,40 +1,36 @@
 import { Client } from '@notionhq/client';
-import { Service } from './Service';
-import { NotionConfig } from './Config';
+import { Service } from './types/Service';
+import { NotionConfig } from './types/Config';
 
 /** Class representing an interaction with Notion. */
 export class Notion implements Service<NotionConfig> {
   public static instance: Notion;
   public notion: Client | null = null;
   public configuration?: NotionConfig;
+
   /**
    * Create and returns a Notion instance.
    *
    * @param configuration - Configuration for connection
-   * @returns {Notion}
    */
   constructor(configuration: NotionConfig) {
-    if (!Notion.instance) {
-      Notion.instance = this;
-      this.configuration = configuration;
-      this.init();
-    }
-
-    return Notion.instance;
+    this.configuration = configuration;
+    this.init();
   }
+
   /**
-   * Send data to notion's database
+   * Request for sending data from form to database
    *
-   * @param {string} content - Data for request
+   * @param {string} content - Form data
    */
-  public async sendData(content: string): Promise<void> {
+  public async send(content: string): Promise<void> {
     if (!this.configuration) {
       return Promise.reject();
     }
 
     await this.notion?.pages.create({
       // eslint-disable-next-line @typescript-eslint/naming-convention -- database_id is the argument of Notion sdk
-      parent: { database_id: this.configuration?.notion.databaseId || '' },
+      parent: { database_id: this.configuration?.databaseId || '' },
       properties: {
         title: {
           type: 'title',
@@ -50,12 +46,13 @@ export class Notion implements Service<NotionConfig> {
       },
     });
   }
+
   /**
    *  Authentication notion's client.
    */
   private init(): void {
     this.notion = new Client({
-      auth: this.configuration?.notion.clientSecret,
+      auth: this.configuration?.clientSecret,
     });
   }
 }

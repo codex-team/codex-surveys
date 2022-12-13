@@ -1,28 +1,16 @@
-import { make } from './utils/make';
-import { sendDataToNotion } from './utils/notionHelpers';
-import classes from './styles/collapsed.module.css';
+import { Form } from './services/Form';
+import { Notion } from './services/Notion';
+import { exampleConfiguration } from './configuration';
 
 /**
  * Create widget on the document
  */
 function createWidget(): void {
-  const container = make('div', classes.container);
+  const form = new Form();
+  const notion = new Notion(exampleConfiguration);
 
-  const titleContainer = make('span', classes.title, {
-    textContent: 'Using Editor.js?',
-  });
-
-  const descriptionContainer = make('span', classes.description, {
-    textContent: 'Take a 2-minutes survey🙏',
-  });
-
-  container.appendChild(titleContainer);
-  container.appendChild(descriptionContainer);
-
-  document.body.appendChild(container);
-
-  container.addEventListener('click', () => {
-    sendDataToNotion('Hello');
+  form.container.addEventListener('click', () => {
+    notion.send('Hello');
   });
 }
 

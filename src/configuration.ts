@@ -1,8 +1,15 @@
-import { NotionConfig } from './services/Config';
+import { NotionConfig } from './services/types/Config';
 
+/**
+ * Notion configuration for testing
+ */
 export const exampleConfiguration: NotionConfig = {
-  notion: {
-    databaseId: import.meta.env.VITE_NOTION_DATABASE_ID || '',
-    clientSecret: import.meta.env.VITE_NOTION_CLIENT_SECRET || '',
-  },
+  /**
+   * Notion database id
+   */
+  databaseId: '',
+  /**
+   * Client secret from integration
+   */
+  clientSecret: '',
 };
