@@ -1,5 +1,5 @@
-import { Form } from './services/Form';
-import { Notion } from './services/Notion';
+import { Form } from './form';
+import { Notion } from './service/notion';
 import { exampleConfiguration } from './configuration';
 
 /**

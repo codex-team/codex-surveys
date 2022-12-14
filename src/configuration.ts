@@ -1,4 +1,4 @@
-import { NotionConfig } from './services/types/Config';
+import { NotionConfig } from './service/notion/config';
 
 /**
  * Notion configuration for testing

@@ -1,10 +1,9 @@
 import { Client } from '@notionhq/client';
-import { Service } from './types/Service';
-import { NotionConfig } from './types/Config';
+import { Service } from '../service';
+import { NotionConfig } from './config';
 
 /** Class representing an interaction with Notion. */
 export class Notion implements Service<NotionConfig> {
-  public static instance: Notion;
   public notion: Client | null = null;
   public configuration?: NotionConfig;
 

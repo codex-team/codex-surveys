@@ -1,12 +1,15 @@
-import { make } from '../utils/make';
-import classes from '../styles/collapsed.module.css';
+import { make } from './utils/make';
+import classes from './styles/collapsed.module.css';
 
-/** Class for creating Feedback form */
+/**
+ * Class for creating Feedback form
+ */
 export class Form {
   /**
    * Form container
    */
   public container: HTMLElement;
+
   /**
    * Create container for form
    */
