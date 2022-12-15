@@ -1,15 +1,7 @@
 /**
  * Interface for sending data to different platforms
- *
- * @template Configuration - type of configuration
  */
-export interface Service<Configuration> {
-  /**
-   * Client config
-   *
-   * @param {Configuration} configuration - Client configuration.
-   */
-  configuration?: Configuration;
+export interface Service {
   /**
    * Sending data to database
    *

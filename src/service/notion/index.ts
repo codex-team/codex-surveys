@@ -3,9 +3,9 @@ import { Service } from '../service';
 import { NotionConfig } from './config';
 
 /** Class representing an interaction with Notion. */
-export class Notion implements Service<NotionConfig> {
+export class Notion implements Service {
   public notion: Client | null = null;
-  public configuration?: NotionConfig;
+  private configuration?: NotionConfig;
 
   /**
    * Create and returns a Notion instance.
