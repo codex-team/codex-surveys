@@ -2,9 +2,18 @@ import { Client } from '@notionhq/client';
 import { Service } from '../service';
 import { NotionConfig } from './config';
 
-/** Class representing an interaction with Notion. */
+/**
+ * Class representing an interaction with Notion.
+ */
 export class Notion implements Service {
+  /**
+   * Client for notion api
+   */
   public notion: Client | null = null;
+
+  /**
+   * Config for database connection
+   */
   private configuration?: NotionConfig;
 
   /**
