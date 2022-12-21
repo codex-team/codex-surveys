@@ -88,8 +88,8 @@ export function mapperField(
   | ((textarea: Textarea) => HTMLElement)
   | ((submit: Submit) => HTMLElement) {
   return {
-    [TypeField.select]: createSelect,
-    [TypeField.textarea]: createTextarea,
-    [TypeField.submit]: createSubmit,
+    [TypeField.Select]: createSelect,
+    [TypeField.Textarea]: createTextarea,
+    [TypeField.Submit]: createSubmit,
   }[type];
 }
