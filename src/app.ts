@@ -6,11 +6,18 @@ import { exampleConfiguration } from './configuration';
  * Create widget on the document
  */
 function createWidget(): void {
-  const form = new Form();
-  const notion = new Notion(exampleConfiguration);
+  const widget = new Form(exampleConfiguration.form);
+  const notion = new Notion(exampleConfiguration.notion);
 
-  form.container.addEventListener('click', () => {
-    notion.send('Hello');
+  widget.form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const data = Object.fromEntries(
+      new FormData(widget.form || undefined).entries()
+    );
+
+    notion.send(data);
+    widget.collapseWidget();
   });
 }
 

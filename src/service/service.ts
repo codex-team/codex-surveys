@@ -7,5 +7,5 @@ export interface Service {
    *
    * @param {string} content - Feedback fields
    */
-  send(content: string): Promise<void>;
+  send(content: Record<string, string>): Promise<void>;
 }

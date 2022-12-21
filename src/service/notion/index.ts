@@ -29,29 +29,34 @@ export class Notion implements Service {
   /**
    * Request for sending data from form to database
    *
-   * @param {string} content - Form data
+   * @param {Record<string, string>} content - Form data
    */
-  public async send(content: string): Promise<void> {
+  public async send(content: Record<string, string>): Promise<void> {
     if (!this.configuration) {
       return Promise.reject();
     }
 
+    const properties = Object.keys(content).reduce(
+      (current, key) =>
+        Object.assign(current, {
+          [key]: {
+            title: [
+              {
+                type: 'text',
+                text: {
+                  content: content[key],
+                },
+              },
+            ],
+          },
+        }),
+      {}
+    );
+
     await this.notion?.pages.create({
       // eslint-disable-next-line @typescript-eslint/naming-convention -- database_id is the argument of Notion sdk
       parent: { database_id: this.configuration?.databaseId || '' },
-      properties: {
-        title: {
-          type: 'title',
-          title: [
-            {
-              type: 'text',
-              text: {
-                content,
-              },
-            },
-          ],
-        },
-      },
+      properties,
     });
   }
 
