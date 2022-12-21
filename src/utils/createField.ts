@@ -1,5 +1,5 @@
 import { make } from './make';
-import { Select, TypeField, Textarea, Submit } from '../types/form';
+import { Select, Field, TypeField, Textarea, Submit } from '../types/form';
 import classes from '../styles/form.module.css';
 
 /**
@@ -79,17 +79,16 @@ function createTextarea(textarea: Textarea): HTMLElement {
 /**
  * Factory for creating field by type
  *
- * @param {TypeField} [type] - type of field
+ * @param {Field} [field] - field from configuration
+ * @returns {HTMLElement | HTMLSelectElement}
  */
-export function mapperField(
-  type: TypeField
-):
-  | ((select: Select) => HTMLSelectElement)
-  | ((textarea: Textarea) => HTMLElement)
-  | ((submit: Submit) => HTMLElement) {
-  return {
-    [TypeField.Select]: createSelect,
-    [TypeField.Textarea]: createTextarea,
-    [TypeField.Submit]: createSubmit,
-  }[type];
+export function buildField(field: Field): HTMLSelectElement | HTMLElement {
+  switch (field.type) {
+    case TypeField.Select:
+      return createSelect(field);
+    case TypeField.Textarea:
+      return createTextarea(field);
+    default:
+      return createSubmit(field);
+  }
 }

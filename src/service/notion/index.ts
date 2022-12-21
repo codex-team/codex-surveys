@@ -29,9 +29,11 @@ export class Notion implements Service {
   /**
    * Request for sending data from form to database
    *
-   * @param {Record<string, string>} content - Form data
+   * @param {Record<string, FormDataEntryValue>} content - Form data
    */
-  public async send(content: Record<string, string>): Promise<void> {
+  public async send(
+    content: Record<string, FormDataEntryValue>
+  ): Promise<void> {
     if (!this.configuration) {
       return Promise.reject();
     }

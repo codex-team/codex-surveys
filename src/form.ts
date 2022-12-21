@@ -2,7 +2,7 @@ import { make } from './utils/make';
 import {
   createLabel,
   createDescription,
-  mapperField
+  buildField
 } from './utils/createField';
 import classes from './styles/form.module.css';
 import { FormConfig } from './types/form';
@@ -100,7 +100,7 @@ export class Form {
         fieldContainer.appendChild(createLabel(item.label));
       }
 
-      const currentField = mapperField(item.field.type)(item.field);
+      const currentField = buildField(item.field);
 
       fieldContainer.appendChild(currentField);
 
