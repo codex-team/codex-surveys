@@ -40,12 +40,12 @@ export class Notion implements Service {
       (current, key) =>
         Object.assign(current, {
           [key]: {
-            title: [
+            type: 'rich_text',
+            // eslint-disable-next-line @typescript-eslint/naming-convention -- rich_text is the argument of Notion api
+            rich_text: [
               {
                 type: 'text',
-                text: {
-                  content: content[key],
-                },
+                text: { content: content[key] },
               },
             ],
           },
