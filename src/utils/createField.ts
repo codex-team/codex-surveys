@@ -1,5 +1,6 @@
 import { make } from './make';
 import { Select, Field, TypeField, Textarea, Submit } from '../types/form';
+import { IconChevronDown } from '@codexteam/icons';
 import classes from '../styles/form.module.css';
 
 /**
@@ -49,6 +50,10 @@ function createSelect(select: Select): HTMLSelectElement {
   const selectContainer = make('select', classes.select, {
     name: select.name,
   }) as HTMLSelectElement;
+
+  selectContainer.style.backgroundImage = `url(data:image/svg+xml;utf8,${encodeURI(
+    IconChevronDown
+  )})`;
 
   select.options.forEach((item) => {
     const option = make('option', classes.option) as HTMLOptionElement;
