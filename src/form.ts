@@ -2,7 +2,7 @@ import { make } from './utils/make';
 import {
   createLabel,
   createDescription,
-  buildField
+  buildField,
 } from './utils/createField';
 import classes from './styles/form.module.css';
 import { FormConfig } from './types/form';

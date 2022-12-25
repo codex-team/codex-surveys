@@ -38,9 +38,9 @@ export const exampleConfiguration: {
       'We want to better understand your goals and requirements. Please, provide us some insights.',
     items: [
       {
-        label: 'Your end user',
+        label: 'Product type',
         field: {
-          name: 'end_user',
+          name: 'product_type',
           type: TypeField.Select,
           options: [
             {
