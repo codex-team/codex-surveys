@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@codexteam/icons@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.npmjs.org/@codexteam/icons/-/icons-0.2.0.tgz#749e8fdd560d332bd06e7b798cdb53e41d3e88f3"
+  integrity sha512-v6ICziqFGHv9Pzcn5Pib799AHBxsD/0s3QoRC6y/ZUHGtogq4HeV4Nzd8C2wTWrbYoZE2BcksFCMEM1xTZEEXA==
+
 "@es-joy/jsdoccomment@~0.36.0":
   version "0.36.0"
   resolved "https://registry.npmjs.org/@es-joy/jsdoccomment/-/jsdoccomment-0.36.0.tgz#e3898aad334281a10ceb3c0ec406297a79f2b043"

@@ -1,6 +1,7 @@
 import { Client } from '@notionhq/client';
 import { Service } from '../service';
 import { NotionConfig } from './config';
+import { API } from './api';
 
 /**
  * Class representing an interaction with Notion.
@@ -29,9 +30,11 @@ export class Notion implements Service {
   /**
    * Request for sending data from form to database
    *
-   * @param {string} content - Form data
+   * @param {Record<string, FormDataEntryValue>} content - Form data
    */
-  public async send(content: string): Promise<void> {
+  public async send(
+    content: Record<string, FormDataEntryValue>
+  ): Promise<void> {
     if (!this.configuration) {
       return Promise.reject();
     }
@@ -39,20 +42,32 @@ export class Notion implements Service {
     await this.notion?.pages.create({
       // eslint-disable-next-line @typescript-eslint/naming-convention -- database_id is the argument of Notion sdk
       parent: { database_id: this.configuration?.databaseId || '' },
-      properties: {
-        title: {
-          type: 'title',
-          title: [
-            {
-              type: 'text',
-              text: {
-                content,
-              },
-            },
-          ],
-        },
-      },
+      properties: this.packData(content),
     });
+  }
+
+  /**
+   * Pack content for Notion API
+   *
+   * @param content - data from form
+   */
+  private packData(content: Record<string, FormDataEntryValue>): API {
+    return Object.keys(content).reduce(
+      (current, key) =>
+        Object.assign(current, {
+          [key]: {
+            type: 'rich_text',
+            // eslint-disable-next-line @typescript-eslint/naming-convention -- rich_text is the argument of Notion api
+            rich_text: [
+              {
+                type: 'text',
+                text: { content: content[key] },
+              },
+            ],
+          },
+        }),
+      {} as API
+    );
   }
 
   /**

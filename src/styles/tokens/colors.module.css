@@ -1,3 +1,7 @@
 @value color-box-shadow: rgba(0, 0, 0, 0.03);
-@value color-border: #e2e2e2;
+@value color-border: #E2E2E2;
 @value color-background-primary: white;
+@value color-select-border: #EFF0F1;
+@value color-submit: #1CADFF;
+@value color-text-white: #FFFFFF;
+@value color-placeholder: rgba(0, 0, 0, 0.5);
