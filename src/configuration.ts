@@ -104,12 +104,6 @@ export const exampleConfiguration: {
           placeholder: 'Enter your ideas, requests or issues',
         },
       },
-      {
-        field: {
-          type: TypeField.Submit,
-          textContent: 'Submit',
-        },
-      },
     ],
   },
 };

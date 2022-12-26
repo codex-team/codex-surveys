@@ -1,6 +1,7 @@
 import { Client } from '@notionhq/client';
 import { Service } from '../service';
 import { NotionConfig } from './config';
+import { API } from './api';
 
 /**
  * Class representing an interaction with Notion.
@@ -38,7 +39,20 @@ export class Notion implements Service {
       return Promise.reject();
     }
 
-    const properties = Object.keys(content).reduce(
+    await this.notion?.pages.create({
+      // eslint-disable-next-line @typescript-eslint/naming-convention -- database_id is the argument of Notion sdk
+      parent: { database_id: this.configuration?.databaseId || '' },
+      properties: this.packData(content),
+    });
+  }
+
+  /**
+   * Pack content for Notion API
+   *
+   * @param content - data from form
+   */
+  private packData(content: Record<string, FormDataEntryValue>): API {
+    return Object.keys(content).reduce(
       (current, key) =>
         Object.assign(current, {
           [key]: {
@@ -52,14 +66,8 @@ export class Notion implements Service {
             ],
           },
         }),
-      {}
+      {} as API
     );
-
-    await this.notion?.pages.create({
-      // eslint-disable-next-line @typescript-eslint/naming-convention -- database_id is the argument of Notion sdk
-      parent: { database_id: this.configuration?.databaseId || '' },
-      properties,
-    });
   }
 
   /**

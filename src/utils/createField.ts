@@ -1,5 +1,5 @@
 import { make } from './make';
-import { Select, Field, TypeField, Textarea, Submit } from '../types/form';
+import { Select, Field, TypeField, Textarea } from '../types/form';
 import { IconChevronDown } from '@codexteam/icons';
 import classes from '../styles/form.module.css';
 
@@ -29,15 +29,18 @@ export function createDescription(textContent: string): HTMLElement {
 
 /**
  * Helper for creating Submit button
- *
- * @param {Submit} [submit] - settings for button
- * @returns {HTMLElement}
  */
-function createSubmit(submit: Submit): HTMLElement {
-  return make('button', classes.submit, {
-    textContent: submit.textContent || 'Submit',
-    type: 'submit',
-  });
+export function createSubmit(): HTMLElement {
+  const fieldContainer = make('div', classes.containerField);
+
+  fieldContainer.appendChild(
+    make('button', classes.submit, {
+      textContent: 'Submit',
+      type: 'submit',
+    })
+  );
+
+  return fieldContainer;
 }
 
 /**
@@ -93,7 +96,5 @@ export function buildField(field: Field): HTMLSelectElement | HTMLElement {
       return createSelect(field);
     case TypeField.Textarea:
       return createTextarea(field);
-    default:
-      return createSubmit(field);
   }
 }

@@ -2,6 +2,7 @@ import { make } from './utils/make';
 import {
   createLabel,
   createDescription,
+  createSubmit,
   buildField,
 } from './utils/createField';
 import classes from './styles/form.module.css';
@@ -127,6 +128,8 @@ export class Form {
 
       form.appendChild(fieldContainer);
     });
+
+    form.appendChild(createSubmit());
 
     this.container.appendChild(form);
 

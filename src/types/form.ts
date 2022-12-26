@@ -8,17 +8,6 @@ export enum TypeField {
 }
 
 /**
- * Type for submit button
- */
-export type Submit = {
-  type: TypeField.Submit;
-  /**
-   * Text in button
-   */
-  textContent?: string;
-};
-
-/**
  * Type for selection
  */
 export type Select = {
@@ -51,7 +40,7 @@ export type Textarea = {
   placeholder?: string;
 };
 
-export type Field = Select | Textarea | Submit;
+export type Field = Select | Textarea;
 
 export type FormConfig = {
   /**
