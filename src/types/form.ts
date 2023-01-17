@@ -4,7 +4,6 @@
 export enum TypeField {
   Select = 'select',
   Textarea = 'textarea',
-  Submit = 'submit',
 }
 
 /**

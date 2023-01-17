@@ -1,22 +1,20 @@
 import { Form } from './form';
 import { Notion } from './service/notion';
-import { exampleConfiguration } from './configuration';
+import { NotionConfig } from './service/notion/config';
+import { FormConfig } from './types/form';
+import { CollapsedFormConfig } from './types/collapsedForm';
 
-/**
- * Create widget on the document
- */
-function createWidget(): void {
-  const notion = new Notion(exampleConfiguration.notion);
-
-  new Form(
-    {
-      form: exampleConfiguration.form,
-      collapsedForm: exampleConfiguration.collapsedForm,
+window.feedback = {
+  load: (configuration: NotionConfig) => {
+    return new Notion(configuration);
+  },
+  createForm: (
+    configuration: {
+      form: FormConfig;
+      collapsedForm: CollapsedFormConfig;
     },
-    (data: Record<string, FormDataEntryValue>) => {
-      notion.send(data);
-    }
-  );
-}
-
-createWidget();
+    sumbitEvent?: (data: Record<string, FormDataEntryValue>) => void
+  ) => {
+    new Form(configuration, sumbitEvent);
+  },
+};
