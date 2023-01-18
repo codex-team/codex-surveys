@@ -18,10 +18,7 @@ export type Select = {
   /**
    * Options in select
    */
-  options: Array<{
-    name: string;
-    value: string;
-  }>;
+  options: Array<string>;
 };
 
 /**

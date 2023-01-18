@@ -5,7 +5,7 @@ import { CollapsedFormConfig } from './collapsedForm';
 
 declare global {
   interface Window {
-    feedback: {
+    survey: {
       load: (configuration: NotionConfig) => Notion;
       createForm: (
         configuration: {

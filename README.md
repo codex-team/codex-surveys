@@ -1,6 +1,6 @@
-# Codex surveys
+# CodeX Surveys
 
-A simple constructor for the feedback widget.
+A simple widget to collect users' feedback.
 
 ## How to use Surveys
 

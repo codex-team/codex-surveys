@@ -61,8 +61,8 @@ function createSelect(select: Select): HTMLSelectElement {
   select.options.forEach((item) => {
     const option = make('option', classes.option) as HTMLOptionElement;
 
-    option.value = item.value;
-    option.text = item.name;
+    option.value = item;
+    option.text = item;
     selectContainer.add(option);
   });
 
