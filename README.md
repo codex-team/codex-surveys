@@ -2,7 +2,7 @@
 
 A simple widget to collect users' feedback.
 
-![EditorJS](https://user-images.githubusercontent.com/26390210/213203142-43ec30cc-5297-4565-8c4a-c72b2c331e31.jpeg)
+<img width="648" alt="surveys" src="https://user-images.githubusercontent.com/26390210/213229181-5bc1e5b2-65b5-4ee6-80f6-1bfcbc9b45ea.png">
 
 ## How to use Surveys
 
