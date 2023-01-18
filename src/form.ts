@@ -3,7 +3,7 @@ import {
   createLabel,
   createDescription,
   createSubmit,
-  buildField
+  buildField,
 } from './utils/createField';
 import classes from './styles/form.module.css';
 import { FormConfig } from './types/form';
