@@ -2,6 +2,8 @@
 
 A simple widget to collect users' feedback.
 
+![EditorJS](https://user-images.githubusercontent.com/26390210/213203142-43ec30cc-5297-4565-8c4a-c72b2c331e31.jpeg)
+
 ## How to use Surveys
 
 1.  Create Notion [integration](https://www.notion.so/my-integrations)
