@@ -1,8 +1,30 @@
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
+import * as path from "path";
+import {defineConfig} from "vite";
 
-export default {
-  rollupOutputOptions: {
-    entryFileNames: '[name].js',
-  },
-  plugins: [cssInjectedByJsPlugin()],
-};
+const isProd = process.env.NODE_ENV === 'production';
+
+/**
+ * Set building options due to environment
+ */
+const createConfig = () => {
+  let config = {
+    plugins: [cssInjectedByJsPlugin()]
+  }
+
+  if (isProd) {
+    config.build = {
+      lib: {
+        entry: path.resolve(__dirname, 'src/app.ts'),
+        name: 'surveys',
+        fileName: 'index',
+        formats: ["es", "cjs"],
+      }
+    }
+  }
+
+  return config;
+}
+
+
+export default defineConfig(createConfig())

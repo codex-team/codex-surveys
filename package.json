@@ -2,9 +2,15 @@
   "name": "@codexteam/surveys",
   "version": "0.0.0",
   "type": "module",
+  "main": "./dist/index.cjs",
+  "files": [
+    "dist"
+  ],
+  "module": "./dist/index.js",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build:dev": "tsc && vite build --mode development",
+    "build:prod": "tsc && vite build",
     "preview": "vite preview",
     "prettier": "prettier . --write",
     "lint": "yarn run eslint src --fix"
