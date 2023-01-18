@@ -1,94 +1,73 @@
 import { Form } from './form';
 import { Notion } from './service/notion';
-import { NotionConfig } from './service/notion/config';
-import { FormConfig } from './types/form';
-import { CollapsedFormConfig } from './types/collapsedForm';
+import { Configuration } from './types/widget';
 
 /**
- * Entry function for widget
+ * Create widget on the document
+ *
+ * @param {Configuration} configuration - Configuration for widget
  */
-window.survey = {
-  /**
-   * Load notion client data
-   * 
-   * @param {NotionConfig} [configuration] - client configuration
-   * @returns {Notion}
-   */
-  load: (configuration: NotionConfig) => {
-    return new Notion(configuration);
-  },
-   /**
-   * Create widget
-   * 
-   * @param {NotionConfig} [configuration] - client configuration
-   * @returns {Notion}
-   */
-  createForm: (
-    configuration: {
-      form: FormConfig;
-      collapsedForm: CollapsedFormConfig;
-    },
-    sumbitEvent?: (data: Record<string, FormDataEntryValue>) => void
-  ) => {
-    new Form(configuration, sumbitEvent);
-  },
-};
+function createWidget(configuration: Configuration): void {
+  const notion = new Notion(configuration.notion);
 
-const createWidget = () => {
-  const notion = window.survey.load({
-    databaseId: '<Notion Database ID>',
-    clientSecret: '<Notion Client ID>',
-  });
-
-  window.survey.createForm(
+  new Form(
     {
-      form: {
-        description:
-          'We want to better understand your goals and requirements. Please, provide us some insights.',
-        items: [
-          {
-            label: 'Product type',
-            field: {
-              name: 'product_type',
-              type: 'select',
-              options: [ 'B2B', 'B2C' ]
-            },
-          },
-          {
-            label: 'Your product size',
-            field: {
-              type: 'select',
-              name: 'product_size',
-              options: ['<100 DAU', '100 DAU - 1000 DAU', '> 1000 DAU']
-            },
-          },
-          {
-            label: 'Your software license',
-            field: {
-              name: 'software_license',
-              type: 'select',
-              options: ['Freeware / Open-Source', 'Permissive', 'Proprietary']
-            },
-          },
-          {
-            label: 'Your suggestions to the Editor.js',
-            field: {
-              name: 'suggestions',
-              type: 'textarea',
-              placeholder: 'Enter your ideas, requests or issues',
-            },
-          },
-        ],
-      },
-      collapsedForm: {
-        title: 'Using Editor.js?',
-        description: 'Take a 2-minutes survey🙏',
-      },
+      form: configuration.form,
+      collapsedForm: configuration.collapsedForm,
     },
-    (data) => {
+    (data: Record<string, FormDataEntryValue>) => {
       notion.send(data);
     }
   );
-};
+}
 
-createWidget()
+createWidget({
+  notion: {
+    databaseId: '<Notion Database ID>',
+    clientSecret: '<Notion Client ID>',
+  },
+  form: {
+    description:
+      'We want to better understand your goals and requirements. Please, provide us some insights.',
+    items: [
+      {
+        label: 'Product type',
+        field: {
+          name: 'product_type',
+          type: 'select',
+          options: ['B2B', 'B2C'],
+        },
+      },
+      {
+        label: 'Your product size',
+        field: {
+          type: 'select',
+          name: 'product_size',
+          options: ['<100 DAU', '100 DAU - 1000 DAU', '> 1000 DAU'],
+        },
+      },
+      {
+        label: 'Your software license',
+        field: {
+          name: 'software_license',
+          type: 'select',
+          options: ['Freeware / Open-Source', 'Permissive', 'Proprietary'],
+        },
+      },
+      {
+        label: 'Your suggestions to the Editor.js',
+        field: {
+          name: 'suggestions',
+          type: 'textarea',
+          placeholder: 'Enter your ideas, requests or issues',
+        },
+      },
+    ],
+  },
+  collapsedForm: {
+    title: 'Using Editor.js?',
+    description: 'Take a 2-minutes survey🙏',
+  },
+});
+
+export { createWidget };
