@@ -2,7 +2,7 @@
   "name": "@codexteam/surveys",
   "version": "0.0.0",
   "type": "module",
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.umd.cjs",
   "files": [
     "dist"
   ],

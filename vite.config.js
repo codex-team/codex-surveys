@@ -18,7 +18,6 @@ const createConfig = () => {
         entry: path.resolve(__dirname, 'src/app.ts'),
         name: 'CodeXSurveys',
         fileName: 'index',
-        formats: ["es", "cjs"],
       }
     }
   }
