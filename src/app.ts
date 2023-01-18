@@ -13,7 +13,7 @@ function createWidget(configuration: Configuration): void {
   new Form(
     {
       form: configuration.form,
-      collapsedForm: configuration.widget,
+      widget: configuration.widget,
     },
     (data: Record<string, FormDataEntryValue>) => {
       notion.send(data);

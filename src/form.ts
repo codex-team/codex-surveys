@@ -26,7 +26,7 @@ export class Form {
   /**
    * Configuration for collapsed form view
    */
-  private collapsedFormConfiguration: WidgetConfig;
+  private widgetConfiguration: WidgetConfig;
 
   /**
    * Configuration for form view
@@ -40,11 +40,11 @@ export class Form {
    * @param onSubmitEvent - Form action on sumbit
    */
   constructor(
-    configuration: { form: FormConfig; collapsedForm: WidgetConfig },
+    configuration: { form: FormConfig; widget: WidgetConfig },
     onSubmitEvent?: (data: Record<string, FormDataEntryValue>) => void
   ) {
     this.fullFormConfiguration = configuration.form;
-    this.collapsedFormConfiguration = configuration.collapsedForm;
+    this.widgetConfiguration = configuration.widget;
     this.container = make('div', classes.container);
     this.form = this.createOpenForm(onSubmitEvent);
     this.createMinimizedForm();
@@ -70,17 +70,17 @@ export class Form {
   private createMinimizedForm(): void {
     const formCollapsed = make('div', classes.collapsed);
 
-    if (this.collapsedFormConfiguration.title) {
+    if (this.widgetConfiguration.title) {
       const titleContainer = make('span', classes.title, {
-        textContent: this.collapsedFormConfiguration.title,
+        textContent: this.widgetConfiguration.title,
       });
 
       formCollapsed.appendChild(titleContainer);
     }
 
-    if (this.collapsedFormConfiguration.description) {
+    if (this.widgetConfiguration.description) {
       const descriptionContainer = make('span', classes.description, {
-        textContent: this.collapsedFormConfiguration.description,
+        textContent: this.widgetConfiguration.description,
       });
 
       formCollapsed.appendChild(descriptionContainer);
