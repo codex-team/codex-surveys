@@ -65,7 +65,7 @@ createWidget({
       },
     ],
   },
-  collapsedForm: {
+  widget: {
     title: 'Using Editor.js?',
     description: 'Take a 2-minutes survey🙏',
   },

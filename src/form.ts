@@ -3,11 +3,11 @@ import {
   createLabel,
   createDescription,
   createSubmit,
-  buildField,
+  buildField
 } from './utils/createField';
 import classes from './styles/form.module.css';
 import { FormConfig } from './types/form';
-import { CollapsedFormConfig } from './types/collapsedForm';
+import { WidgetConfig } from './types/widget';
 
 /**
  * Class for creating Feedback form
@@ -26,7 +26,7 @@ export class Form {
   /**
    * Configuration for collapsed form view
    */
-  private collapsedFormConfiguration: CollapsedFormConfig;
+  private collapsedFormConfiguration: WidgetConfig;
 
   /**
    * Configuration for form view
@@ -40,7 +40,7 @@ export class Form {
    * @param onSubmitEvent - Form action on sumbit
    */
   constructor(
-    configuration: { form: FormConfig; collapsedForm: CollapsedFormConfig },
+    configuration: { form: FormConfig; collapsedForm: WidgetConfig },
     onSubmitEvent?: (data: Record<string, FormDataEntryValue>) => void
   ) {
     this.fullFormConfiguration = configuration.form;

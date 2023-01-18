@@ -1,6 +1,6 @@
 import { Form } from './form';
 import { Notion } from './service/notion';
-import { Configuration } from './types/widget';
+import { Configuration } from './types/configuration';
 
 /**
  * Create widget on the document
@@ -13,7 +13,7 @@ function createWidget(configuration: Configuration): void {
   new Form(
     {
       form: configuration.form,
-      collapsedForm: configuration.collapsedForm,
+      collapsedForm: configuration.widget,
     },
     (data: Record<string, FormDataEntryValue>) => {
       notion.send(data);
