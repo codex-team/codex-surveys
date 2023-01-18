@@ -16,7 +16,7 @@ const createConfig = () => {
     config.build = {
       lib: {
         entry: path.resolve(__dirname, 'src/app.ts'),
-        name: 'surveys',
+        name: 'CodeXSurveys',
         fileName: 'index',
         formats: ["es", "cjs"],
       }
