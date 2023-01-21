@@ -19,4 +19,4 @@ function createWidget(): void {
   );
 }
 
-createWidget();
+export default createWidget
