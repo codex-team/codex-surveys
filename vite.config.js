@@ -1,3 +1,4 @@
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import * as path from 'path';
 import { defineConfig } from 'vite';
 
