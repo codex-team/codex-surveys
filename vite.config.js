@@ -1,6 +1,6 @@
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
-import * as path from "path";
-import {defineConfig} from "vite";
+import * as path from 'path';
+import { defineConfig } from 'vite';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -9,8 +9,8 @@ const isProd = process.env.NODE_ENV === 'production';
  */
 const createConfig = () => {
   let config = {
-    plugins: [cssInjectedByJsPlugin()]
-  }
+    plugins: [cssInjectedByJsPlugin()],
+  };
 
   if (isProd) {
     config.build = {
@@ -18,12 +18,11 @@ const createConfig = () => {
         entry: path.resolve(__dirname, 'src/app.ts'),
         name: 'CodeXSurveys',
         fileName: 'index',
-      }
-    }
+      },
+    };
   }
 
   return config;
-}
+};
 
-
-export default defineConfig(createConfig())
+export default defineConfig(createConfig());

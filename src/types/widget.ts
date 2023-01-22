@@ -1,7 +1,7 @@
 /**
  * Configuration for collapsed form
  */
-export type CollapsedFormConfig = {
+export type WidgetConfig = {
   /**
    * Title for collapsed form
    */
