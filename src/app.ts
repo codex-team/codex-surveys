@@ -3,22 +3,38 @@ import { Notion } from './service/notion';
 import { Configuration } from './types/configuration';
 
 /**
- * Create widget on the document
- *
- * @param {Configuration} configuration - Configuration for widget
+ * Class for creating widget on the document
  */
-function createWidget(configuration: Configuration): void {
-  const notion = new Notion(configuration.notion);
+export class CodeXSurveys {
+  /**
+   * Class for connection to Notion
+   */
+  private notion: Notion;
 
-  new Form(
-    {
-      form: configuration.form,
-      widget: configuration.widget,
-    },
-    (data: Record<string, FormDataEntryValue>) => {
-      notion.send(data);
-    }
-  );
+  /**
+   * Create notion connection and form
+   *
+   * @param {Configuration} configuration - Configuration for widget
+   */
+  constructor(configuration: Configuration) {
+    this.notion = new Notion(configuration.notion);
+    this.createForm(configuration);
+  }
+
+  /**
+   * Creating form on the document
+   *
+   * @param {Configuration} configuration - Configuration for widget
+   */
+  private createForm(configuration: Configuration): void {
+    new Form(
+      {
+        form: configuration.form,
+        widget: configuration.widget,
+      },
+      (data: Record<string, FormDataEntryValue>) => {
+        this.notion.send(data);
+      }
+    );
+  }
 }
-
-export { createWidget };

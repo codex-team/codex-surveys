@@ -20,9 +20,9 @@ A simple widget to collect users' feedback.
 5.  Add widget to your page
 
 ```javascript
-import { createWidget } from '@codexteam/surveys';
+import { CodeXSurveys } from '@codexteam/surveys';
 
-createWidget({
+const widget = new CodeXSurveys({
   notion: {
     databaseId: '<Notion Database ID>',
     clientSecret: '<Notion Client ID>',
