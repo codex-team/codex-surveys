@@ -16,7 +16,6 @@
   background: color-background-primary;
   font-size: main-font-size;
   line-height: main-line-height;
-  cursor: pointer;
 }
 
 .title {
@@ -26,10 +25,12 @@
 .collapsed {
   display: inline-flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .description {
   margin: 0;
+  cursor: default;
 }
 
 .label {
@@ -43,6 +44,7 @@
   border: 1px solid color-select-border;
   background-repeat: no-repeat;
   background-position: right 6px bottom 50%;
+  cursor: pointer;
 
   appearance: none;
   -moz-appearance: none;
