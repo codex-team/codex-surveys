@@ -55,6 +55,19 @@
   -webkit-appearance: none;
 }
 
+.close {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  right: 6px;
+  top: 2px;
+}
+
 .textarea {
   resize: none;
   border-radius: 6px;
@@ -85,6 +98,7 @@
   display: flex;
   flex-direction: column;
   width: 280px;
+  padding-top: 6px;
 }
 
 .open .collapsed {

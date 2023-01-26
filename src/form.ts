@@ -3,6 +3,7 @@ import {
   createLabel,
   createDescription,
   createSubmit,
+  createClose,
   buildField
 } from './utils/createField';
 import classes from './styles/form.module.css';
@@ -108,6 +109,14 @@ export class Form {
     onSubmitEvent?: (e: Record<string, FormDataEntryValue>) => void
   ): HTMLFormElement {
     const form = make('form', classes.form) as HTMLFormElement;
+
+    const cross = createClose();
+
+    form.appendChild(cross);
+
+    cross.addEventListener('click', () => {
+      this.collapseWidget();
+    });
 
     if (this.fullFormConfiguration.description) {
       form.appendChild(

@@ -1,6 +1,6 @@
 import { make } from './make';
 import { Select, Field, TypeField, Textarea } from '../types/form';
-import { IconChevronDown } from '@codexteam/icons';
+import { IconChevronDown, IconCross } from '@codexteam/icons';
 import classes from '../styles/form.module.css';
 
 /**
@@ -44,6 +44,29 @@ export function createSubmit(): HTMLElement {
 }
 
 /**
+ * Helper for adding icon to background
+ *
+ * @param {HTMLElement} container - container for adding background
+ * @param {string} icon - added icon
+ */
+function addBackgroundIcon(container: HTMLElement, icon: string): void {
+  container.style.backgroundImage = `url(data:image/svg+xml;utf8,${encodeURI(
+    icon
+  )})`;
+}
+
+/**
+ * Helper for creating close button
+ */
+export function createClose(): HTMLButtonElement {
+  const closeContainer = make('button', classes.close) as HTMLButtonElement;
+
+  addBackgroundIcon(closeContainer, IconCross);
+
+  return closeContainer;
+}
+
+/**
  * Helper for creating Select
  *
  * @param {Select} [select] - user settings for select
@@ -54,9 +77,7 @@ function createSelect(select: Select): HTMLSelectElement {
     name: select.name,
   }) as HTMLSelectElement;
 
-  selectContainer.style.backgroundImage = `url(data:image/svg+xml;utf8,${encodeURI(
-    IconChevronDown
-  )})`;
+  addBackgroundIcon(selectContainer, IconChevronDown);
 
   select.options.forEach((item) => {
     const option = make('option', classes.option) as HTMLOptionElement;
