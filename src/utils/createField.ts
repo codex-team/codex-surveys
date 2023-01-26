@@ -57,6 +57,8 @@ function addBackgroundIcon(container: HTMLElement, icon: string): void {
 
 /**
  * Helper for creating close button
+ * 
+ * @returns {HTMLButtonElement}
  */
 export function createClose(): HTMLButtonElement {
   const closeContainer = make('button', classes.close) as HTMLButtonElement;
