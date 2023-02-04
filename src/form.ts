@@ -3,9 +3,9 @@ import {
   createLabel,
   createDescription,
   createSubmit,
-  createClose,
-  buildField
+  buildField,
 } from './utils/createField';
+import { IconCross } from '@codexteam/icons';
 import classes from './styles/form.module.css';
 import { FormConfig } from './types/form';
 import { WidgetConfig } from './types/widget';
@@ -80,7 +80,7 @@ export class Form {
     }
 
     if (this.widgetConfiguration.description) {
-      const descriptionContainer = make('span', classes.description, {
+      const descriptionContainer = make('span', classes.subtitle, {
         textContent: this.widgetConfiguration.description,
       });
 
@@ -101,6 +101,23 @@ export class Form {
   }
 
   /**
+   * Create close button
+   *
+   * @returns {HTMLButtonElement}
+   */
+  private createClose(): HTMLButtonElement {
+    const closeContainer = make('button', classes.close) as HTMLButtonElement;
+
+    closeContainer.innerHTML = IconCross;
+
+    closeContainer.addEventListener('click', () => {
+      this.collapseWidget();
+    });
+
+    return closeContainer;
+  }
+
+  /**
    * Create and add form to document
    *
    * @param onSubmitEvent - Submit event for sending data
@@ -110,13 +127,7 @@ export class Form {
   ): HTMLFormElement {
     const form = make('form', classes.form) as HTMLFormElement;
 
-    const cross = createClose();
-
-    form.appendChild(cross);
-
-    cross.addEventListener('click', () => {
-      this.collapseWidget();
-    });
+    form.appendChild(this.createClose());
 
     if (this.fullFormConfiguration.description) {
       form.appendChild(
