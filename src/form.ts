@@ -79,7 +79,7 @@ export class Form {
     }
 
     if (this.widgetConfiguration.description) {
-      const descriptionContainer = make('span', classes.description, {
+      const descriptionContainer = make('span', classes.subtitle, {
         textContent: this.widgetConfiguration.description,
       });
 

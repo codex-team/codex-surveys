@@ -12,7 +12,7 @@
       new CodeXSurveys({
         notion: {
           databaseId: 'DATABASE_ID',
-          clientSecret: 'CLIENT_SECRET_ID'
+          clientSecret: 'CLIENT_SECRET_ID',
         },
         form: {
           description:
@@ -39,7 +39,11 @@
               field: {
                 name: 'software_license',
                 type: 'select',
-                options: ['Freeware / Open-Source', 'Permissive', 'Proprietary'],
+                options: [
+                  'Freeware / Open-Source',
+                  'Permissive',
+                  'Proprietary',
+                ],
               },
             },
             {
@@ -55,8 +59,8 @@
         widget: {
           title: 'Using Editor.js?',
           description: 'Take a 2-minutes survey🙏',
-        }
-      })
+        },
+      });
     </script>
 
     <style>
