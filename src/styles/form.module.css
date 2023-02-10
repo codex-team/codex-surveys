@@ -29,7 +29,7 @@
 }
 
 .description {
-  margin: 0;
+  margin: 0 44px 0 0;
 }
 
 .label {
@@ -53,6 +53,24 @@
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
+}
+
+.close {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  right: 20px;
+  top: 8px;
+  opacity: 30%;
+}
+
+.close:hover {
+  opacity: 100%;
 }
 
 .textarea {
