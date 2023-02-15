@@ -4,7 +4,6 @@
 @value main-font-size, normal-font-weight, bold-font-weight, main-line-height,  extra-bold-font-weight, main-font-weight from fonts;
 
 .container {
-  padding: 10px;
   border: 1px solid color-border;
   box-shadow: 0 7px 9px color-box-shadow;
   border-radius: 10px;
@@ -16,7 +15,6 @@
   background: color-background-primary;
   font-size: main-font-size;
   line-height: main-line-height;
-  cursor: pointer;
 }
 
 .title {
@@ -26,9 +24,12 @@
 .collapsed {
   display: inline-flex;
   flex-direction: column;
+  padding: 10px;
+  cursor: pointer;
 }
 
 .description {
+  cursor: default;
   margin: 0 44px 0 0;
 }
 
@@ -43,6 +44,7 @@
   border: 1px solid color-select-border;
   background-repeat: no-repeat;
   background-position: right 6px bottom 50%;
+  cursor: pointer;
 
   appearance: none;
   -moz-appearance: none;
@@ -97,6 +99,7 @@
 
 .form {
   display: none;
+  padding: 10px;
 }
 
 .open .form {
