@@ -58,6 +58,14 @@ function createSelect(select: Select): HTMLSelectElement {
     IconChevronDown
   )})`;
 
+  selectContainer.add(
+    make('option', classes.option, {
+      value: '',
+      text: 'Choose option',
+      hidden: true,
+    }) as HTMLOptionElement
+  );
+
   select.options.forEach((item) => {
     const option = make('option', classes.option) as HTMLOptionElement;
 
