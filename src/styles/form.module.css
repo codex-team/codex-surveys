@@ -15,6 +15,8 @@
   background: color-background-primary;
   font-size: main-font-size;
   line-height: main-line-height;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .title {
@@ -24,7 +26,7 @@
 .collapsed {
   display: inline-flex;
   flex-direction: column;
-  padding: 10px 10px 10px 9px;
+  padding: 10px;
   cursor: pointer;
 }
 
@@ -68,9 +70,10 @@
   appearance: none;
   width: 20px;
   height: 20px;
-  right: 20px;
-  top: 8px;
+  right: 14px;
+  top: 10px;
   opacity: 30%;
+  padding: 0;
 }
 
 .close:hover {
@@ -109,7 +112,7 @@ textarea {
 
 .form {
   display: none;
-  padding: 9px 10px 9px 9px;
+  padding: 10px;
 }
 
 .open .form {
