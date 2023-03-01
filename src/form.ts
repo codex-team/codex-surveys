@@ -3,7 +3,7 @@ import {
   createLabel,
   createDescription,
   createSubmit,
-  buildField,
+  buildField
 } from './utils/createField';
 import { IconCross } from '@codexteam/icons';
 import classes from './styles/form.module.css';
@@ -161,7 +161,7 @@ export class Form {
           new FormData(this.form || undefined).entries()
         );
 
-        if (Object.values(data).every((element) => element)) {
+        if (form.reportValidity()) {
           onSubmitEvent(data);
           this.collapseWidget();
         }
