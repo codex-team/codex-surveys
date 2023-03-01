@@ -11,8 +11,7 @@
   bottom: 20px;
   right: 20px;
   position: fixed;
-  /* z-index: 2147483647; */
-  z-index: 2;
+  z-index: 2147483647;
   background: color-background-primary;
   font-size: main-font-size;
   line-height: main-line-height;
