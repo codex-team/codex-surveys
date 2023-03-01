@@ -161,10 +161,8 @@ export class Form {
           new FormData(this.form || undefined).entries()
         );
 
-        if (form.reportValidity()) {
-          onSubmitEvent(data);
-          this.collapseWidget();
-        }
+        onSubmitEvent(data);
+        this.collapseWidget();
       }
     });
 
