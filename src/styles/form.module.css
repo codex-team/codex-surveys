@@ -1,6 +1,6 @@
 @value colors: "./tokens/colors.module.css";
 @value fonts: "./tokens/fonts.module.css";
-@value color-box-shadow, color-placeholder, color-text-white, color-submit, color-select-border, color-border, color-background-primary from colors;
+@value color-box-shadow, color-placeholder, color-text-white, color-submit, color-error, color-success, color-select-border, color-border, color-background-primary from colors;
 @value main-font-size, normal-font-weight, bold-font-weight, main-line-height,  extra-bold-font-weight, main-font-weight from fonts;
 
 .container {
@@ -15,6 +15,22 @@
   background: color-background-primary;
   font-size: main-font-size;
   line-height: main-line-height;
+}
+
+.notification {
+  height: 44px;
+  width: 172px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success {
+  color: color-success;
+}
+
+.error {
+  color: color-error;
 }
 
 .title {

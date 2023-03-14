@@ -32,9 +32,7 @@ export class CodeXSurveys {
         form: configuration.form,
         widget: configuration.widget,
       },
-      (data: Record<string, FormDataEntryValue>) => {
-        this.notion.send(data);
-      }
+      (data: Record<string, FormDataEntryValue>) => this.notion.send(data)
     );
   }
 }

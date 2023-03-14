@@ -5,3 +5,5 @@
 @value color-submit: #1CADFF;
 @value color-text-white: #FFFFFF;
 @value color-placeholder: rgba(0, 0, 0, 0.5);
+@value color-error: #ff3333;
+@value color-success: #4BB543;
