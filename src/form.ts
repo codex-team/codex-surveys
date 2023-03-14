@@ -3,7 +3,7 @@ import {
   createLabel,
   createDescription,
   createSubmit,
-  buildField,
+  buildField
 } from './utils/createField';
 import { IconCross } from '@codexteam/icons';
 import classes from './styles/form.module.css';
@@ -53,7 +53,7 @@ export class Form {
     this.widgetConfiguration = configuration.widget;
     this.container = make('div', classes.container);
     this.form = this.createOpenForm(onSubmitEvent);
-    this.createMinimizedForm();
+    this.formCollapsed = this.createMinimizedForm();
   }
 
   /**
@@ -73,15 +73,15 @@ export class Form {
   /**
    * Create and add collapsed form to document
    */
-  private createMinimizedForm(): void {
-    this.formCollapsed = make('div', classes.collapsed) as HTMLDivElement;
+  private createMinimizedForm(): HTMLDivElement {
+    const formCollapsed = make('div', classes.collapsed) as HTMLDivElement;
 
     if (this.widgetConfiguration.title) {
       const titleContainer = make('span', classes.title, {
         textContent: this.widgetConfiguration.title,
       });
 
-      this.formCollapsed.appendChild(titleContainer);
+      formCollapsed.appendChild(titleContainer);
     }
 
     if (this.widgetConfiguration.description) {
@@ -89,20 +89,22 @@ export class Form {
         textContent: this.widgetConfiguration.description,
       });
 
-      this.formCollapsed.appendChild(descriptionContainer);
+      formCollapsed.appendChild(descriptionContainer);
     }
 
-    this.container.appendChild(this.formCollapsed);
+    this.container.appendChild(formCollapsed);
 
     document.body.appendChild(this.container);
 
-    this.formCollapsed.addEventListener('click', () => {
+    formCollapsed.addEventListener('click', () => {
       if (this.container.className.includes(classes.open)) {
         this.collapseWidget();
       } else {
         this.openWidget();
       }
     });
+
+    return formCollapsed;
   }
 
   /**
@@ -130,7 +132,6 @@ export class Form {
    * @param submitPromise - Promise created by submit
    */
   private createSubmitNotification(submitPromise: Promise<void>): void {
-    // @ts-expect-error replaceChildren exists in HTMLDivElement
     this.formCollapsed.replaceChildren();
     const notificationContainer = make('span', classes.notification);
 
