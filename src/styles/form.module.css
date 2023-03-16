@@ -40,6 +40,8 @@
 }
 
 .select {
+  outline: none;
+  color: black;
   height: 32px;
   padding: 0 7px;
   border-radius: 6px;
