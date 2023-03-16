@@ -1,6 +1,6 @@
 @value colors: "./tokens/colors.module.css";
 @value fonts: "./tokens/fonts.module.css";
-@value color-box-shadow, color-submit-hover, color-placeholder, color-text-white, color-submit, color-select-border, color-border, color-background-primary from colors;
+@value color-box-shadow, color-text-black, color-submit-hover, color-placeholder, color-text-white, color-submit, color-select-border, color-border, color-background-primary from colors;
 @value main-font-size, normal-font-weight, bold-font-weight, main-line-height,  extra-bold-font-weight, main-font-weight from fonts;
 
 .container {
@@ -41,7 +41,7 @@
 
 .select {
   outline: none;
-  color: black;
+  color: color-text-black;
   height: 32px;
   padding: 0 7px;
   border-radius: 6px;
