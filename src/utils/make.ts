@@ -9,7 +9,7 @@
 export function make(
   tagName: string,
   classNames: string | string[] = '',
-  attributes: Record<string, string | number> = {}
+  attributes: Record<string, string | number | boolean> = {}
 ): HTMLElement {
   const el = document.createElement(tagName);
 

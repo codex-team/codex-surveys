@@ -162,9 +162,8 @@ export class Form {
         );
 
         onSubmitEvent(data);
+        this.collapseWidget();
       }
-
-      this.collapseWidget();
     });
 
     return form;
