@@ -11,13 +11,14 @@ A simple widget to collect users' feedback.
 3.  Add connection to database
     Right menu > Connections > Add connection
 
-4.  Install the package
+4.  Add required columns to your Notion database 
+5.  Install the package
 
 ```bash
   yarn add @codexteam/surveys
 ```
 
-5.  Add widget to your page
+6.  Add widget to your page, there `<Notion Database>` is first part (before "?v=") of your Notion database url and `<Notion Client ID>` is a secret retrieved from Notion intergation
 
 ```javascript
 import { CodeXSurveys } from '@codexteam/surveys';
