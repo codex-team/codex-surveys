@@ -52,11 +52,20 @@ export function createSubmit(): HTMLElement {
 function createSelect(select: Select): HTMLSelectElement {
   const selectContainer = make('select', classes.select, {
     name: select.name,
+    required: true,
   }) as HTMLSelectElement;
 
   selectContainer.style.backgroundImage = `url(data:image/svg+xml;utf8,${encodeURI(
     IconChevronDown
   )})`;
+
+  selectContainer.add(
+    make('option', classes.option, {
+      value: '',
+      text: 'Choose option',
+      hidden: true,
+    }) as HTMLOptionElement
+  );
 
   select.options.forEach((item) => {
     const option = make('option', classes.option) as HTMLOptionElement;
@@ -79,6 +88,7 @@ function createTextarea(textarea: Textarea): HTMLElement {
   const textareaContainer = make('textarea', classes.textarea, {
     placeholder: textarea.placeholder || '',
     name: textarea.name,
+    required: true,
   });
 
   return textareaContainer;

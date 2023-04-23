@@ -10,6 +10,9 @@ const isProd = process.env.NODE_ENV === 'production';
 const createConfig = () => {
   let config = {
     plugins: [cssInjectedByJsPlugin()],
+    define: {
+      global: {},
+    },
   };
 
   if (isProd) {

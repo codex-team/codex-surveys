@@ -3,12 +3,14 @@ import {
   createLabel,
   createDescription,
   createSubmit,
-  buildField
+  buildField,
 } from './utils/createField';
 import { IconCross } from '@codexteam/icons';
 import classes from './styles/form.module.css';
 import { FormConfig } from './types/form';
 import { WidgetConfig } from './types/widget';
+
+const WIDGET_CLOSE_TIME = 500;
 
 /**
  * Class for creating Feedback form
@@ -110,17 +112,19 @@ export class Form {
   /**
    * Create close button
    *
+   * @param onClick - Actions on close click
    * @returns {HTMLButtonElement}
    */
-  private createClose(): HTMLButtonElement {
+  private createClose(onClick?: () => void): HTMLButtonElement {
     const closeContainer = make('button', classes.close, {
       type: 'button',
     }) as HTMLButtonElement;
 
     closeContainer.innerHTML = IconCross;
 
-    closeContainer.addEventListener('click', () => {
-      this.collapseWidget();
+    closeContainer.addEventListener('click', (e) => {
+      e.stopPropagation();
+      onClick?.();
     });
 
     return closeContainer;
@@ -133,21 +137,40 @@ export class Form {
    */
   private createSubmitNotification(submitPromise: Promise<void>): void {
     this.formCollapsed.replaceChildren();
+    const submission = this.fullFormConfiguration.submission;
     const notificationContainer = make('span', classes.notification);
 
     this.formCollapsed.append(notificationContainer);
 
+    const autoClose = (): void => {
+      this.container.classList.add(classes.hidden);
+    };
+
+    this.formCollapsed.appendChild(this.createClose());
+
+    setTimeout(autoClose, WIDGET_CLOSE_TIME);
+
     submitPromise
       .then(() => {
-        notificationContainer.classList.add(classes.success);
-        notificationContainer.textContent = 'Successfully sent';
+        notificationContainer.appendChild(
+          make('div', classes.successIcon, {
+            textContent: '🎉',
+          })
+        );
+
+        notificationContainer.appendChild(
+          make('div', classes.notificationContent, {
+            textContent: submission?.success || '',
+          })
+        );
       })
       .catch(() => {
-        notificationContainer.classList.add(classes.error);
-        notificationContainer.textContent = 'Delivery failure';
+        notificationContainer.appendChild(
+          make('div', classes.notificationContent, {
+            textContent: submission?.error || '',
+          })
+        );
       });
-
-    this.collapseWidget();
   }
 
   /**
@@ -160,7 +183,11 @@ export class Form {
   ): HTMLFormElement {
     const form = make('form', classes.form) as HTMLFormElement;
 
-    form.appendChild(this.createClose());
+    form.appendChild(
+      this.createClose(() => {
+        this.collapseWidget();
+      })
+    );
 
     if (this.fullFormConfiguration.description) {
       form.appendChild(
@@ -196,7 +223,12 @@ export class Form {
 
         const submitPromise = onSubmitEvent(data);
 
-        this.createSubmitNotification(submitPromise);
+        if (this.fullFormConfiguration.submission) {
+          this.collapseWidget();
+          this.createSubmitNotification(submitPromise);
+        } else {
+          this.collapseWidget();
+        }
       }
     });
 

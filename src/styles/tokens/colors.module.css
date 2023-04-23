@@ -3,7 +3,9 @@
 @value color-background-primary: white;
 @value color-select-border: #EFF0F1;
 @value color-submit: #1CADFF;
+@value color-submit-hover: #1682C8;
 @value color-text-white: #FFFFFF;
+@value color-text-black: #000000;
 @value color-placeholder: rgba(0, 0, 0, 0.5);
 @value color-error: #ff3333;
 @value color-success: #4BB543;

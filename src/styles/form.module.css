@@ -1,36 +1,58 @@
 @value colors: "./tokens/colors.module.css";
 @value fonts: "./tokens/fonts.module.css";
-@value color-box-shadow, color-placeholder, color-text-white, color-submit, color-error, color-success, color-select-border, color-border, color-background-primary from colors;
-@value main-font-size, normal-font-weight, bold-font-weight, main-line-height,  extra-bold-font-weight, main-font-weight from fonts;
+@value color-box-shadow, color-text-black, color-submit-hover, color-placeholder, color-text-white, color-submit, color-error, color-success, color-select-border, color-border, color-background-primary from colors;
+@value main-font-size, icon-font-size, icon-line-height, normal-font-weight, bold-font-weight, main-line-height,  extra-bold-font-weight, main-font-weight from fonts;
 
 .container {
   border: 1px solid color-border;
   box-shadow: 0 7px 9px color-box-shadow;
   border-radius: 10px;
   font-family: system-ui;
-  bottom: 10px;
-  right: 10px;
+  bottom: 20px;
+  right: 20px;
   position: fixed;
   z-index: 2147483647;
   background: color-background-primary;
   font-size: main-font-size;
   line-height: main-line-height;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hidden {
+  animation: fadeOut 5s;
+  opacity: 0;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .notification {
-  height: 44px;
-  width: 172px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 32px;
 }
 
-.success {
-  color: color-success;
+.successIcon {
+  font-size: icon-font-size;
+  line-height: icon-line-height;
 }
 
-.error {
-  color: color-error;
+.notificationContent {
+  width: 216px;
+  text-align: center;
+  font-weight: normal-font-weight;
+  font-size: main-font-size;
+  line-height: main-line-height;
 }
 
 .title {
@@ -54,12 +76,15 @@
 }
 
 .select {
+  outline: none;
+  color: color-text-black;
   height: 32px;
-  padding: 0 8px;
+  padding: 0 7px;
   border-radius: 6px;
   border: 1px solid color-select-border;
   background-repeat: no-repeat;
-  background-position: right 6px bottom 50%;
+  background-position: right 7px bottom 50%;
+  background-size: 20px;
   cursor: pointer;
 
   appearance: none;
@@ -68,6 +93,7 @@
 }
 
 .option {
+  padding: 0;
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -80,11 +106,12 @@
   border: none;
   background-color: transparent;
   appearance: none;
-  width: 20px;
-  height: 20px;
-  right: 20px;
-  top: 8px;
+  width: 24px;
+  height: 24px;
+  right: 10px;
+  top: 10px;
   opacity: 30%;
+  padding: 0;
 }
 
 .close:hover {
@@ -92,11 +119,12 @@
 }
 
 .textarea {
-  resize: none;
   border-radius: 6px;
   border: 1px solid color-select-border;
-  padding: 6px 8px;
+  padding: 5px 7px;
   min-height: 57px;
+  resize: vertical;
+  max-height: 300px;
 }
 
 .textarea::placeholder {
@@ -111,6 +139,13 @@
   display: grid;
   gap: 6px;
   padding: 10px 0;
+}
+
+.containerField div,
+label,
+select,
+textarea {
+  font-size: main-font-size;
 }
 
 .form {
@@ -138,4 +173,8 @@
   font-size: main-font-size;
   line-height: main-line-height;
   font-weight: extra-bold-font-weight;
+}
+
+.submit:hover {
+  background: color-submit-hover;
 }
