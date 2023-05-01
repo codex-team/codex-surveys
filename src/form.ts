@@ -10,7 +10,7 @@ import classes from './styles/form.module.css';
 import { FormConfig } from './types/form';
 import { WidgetConfig } from './types/widget';
 
-const WIDGET_CLOSE_TIME = 1000;
+const WIDGET_CLOSE_TIME = 5000;
 
 /**
  * Class for creating Feedback form
