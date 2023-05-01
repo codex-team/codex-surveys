@@ -20,7 +20,7 @@
 }
 
 .hidden {
-  animation: fadeOut 5s;
+  animation: fadeOut 3s;
   opacity: 0;
 }
 

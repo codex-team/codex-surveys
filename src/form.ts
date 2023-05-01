@@ -3,14 +3,14 @@ import {
   createLabel,
   createDescription,
   createSubmit,
-  buildField,
+  buildField
 } from './utils/createField';
-import { IconCross } from '@codexteam/icons';
+import { IconCross, IconLoader } from '@codexteam/icons';
 import classes from './styles/form.module.css';
 import { FormConfig } from './types/form';
 import { WidgetConfig } from './types/widget';
 
-const WIDGET_CLOSE_TIME = 500;
+const WIDGET_CLOSE_TIME = 1000;
 
 /**
  * Class for creating Feedback form
@@ -140,17 +140,20 @@ export class Form {
     const submission = this.fullFormConfiguration.submission;
     const notificationContainer = make('span', classes.notification);
 
+    notificationContainer.innerHTML = IconLoader;
+
     this.formCollapsed.append(notificationContainer);
 
     const autoClose = (): void => {
       this.container.classList.add(classes.hidden);
     };
 
-    this.formCollapsed.appendChild(this.createClose());
-
-    setTimeout(autoClose, WIDGET_CLOSE_TIME);
-
     submitPromise
+      .finally(() => {
+        notificationContainer.innerHTML = '';
+        this.formCollapsed.appendChild(this.createClose());
+        setTimeout(autoClose, WIDGET_CLOSE_TIME);
+      })
       .then(() => {
         notificationContainer.appendChild(
           make('div', classes.successIcon, {
