@@ -76,7 +76,7 @@ export class Notion implements Service {
   private init(): void {
     this.notion = new Client({
       auth: this.configuration?.clientSecret,
-      baseUrl: this.configuration?.baseUrl,
+      baseUrl: this.configuration?.saveEndpoint,
     });
   }
 }

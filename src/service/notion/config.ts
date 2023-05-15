@@ -15,5 +15,5 @@ export type NotionConfig = {
    *
    * @default "https://api.notion.com/v1"
    */
-  baseUrl?: string;
+  saveEndpoint?: string;
 };
