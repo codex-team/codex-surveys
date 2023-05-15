@@ -26,6 +26,7 @@ const widget = new CodeXSurveys({
   notion: {
     databaseId: '<Notion Database ID>',
     clientSecret: '<Notion Client ID>',
+    saveEndpoint: '<API url>',
   },
   form: {
     description:

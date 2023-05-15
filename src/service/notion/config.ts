@@ -10,4 +10,10 @@ export type NotionConfig = {
    * Notion client secret for authentication. Get from integration - https://www.notion.so/my-integrations
    */
   clientSecret: string;
+  /**
+   * Notion api url, if you are using proxy or other version, you can change it.
+   *
+   * @default "https://api.notion.com/v1"
+   */
+  saveEndpoint?: string;
 };
