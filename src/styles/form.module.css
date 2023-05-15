@@ -1,7 +1,7 @@
 @value colors: "./tokens/colors.module.css";
 @value fonts: "./tokens/fonts.module.css";
-@value color-box-shadow, color-text-black, color-submit-hover, color-placeholder, color-text-white, color-submit, color-select-border, color-border, color-background-primary from colors;
-@value main-font-size, normal-font-weight, bold-font-weight, main-line-height,  extra-bold-font-weight, main-font-weight from fonts;
+@value color-box-shadow, color-text-black, color-submit-hover, color-placeholder, color-text-white, color-submit, color-error, color-success, color-select-border, color-border, color-background-primary from colors;
+@value main-font-size, icon-font-size, icon-line-height, normal-font-weight, bold-font-weight, main-line-height,  extra-bold-font-weight, main-font-weight from fonts;
 
 .container {
   border: 1px solid color-border;
@@ -17,6 +17,42 @@
   line-height: main-line-height;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.hidden {
+  animation: fadeOut 0.5s;
+  opacity: 0;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 32px;
+}
+
+.successIcon {
+  font-size: icon-font-size;
+  line-height: icon-line-height;
+}
+
+.notificationContent {
+  width: 216px;
+  text-align: center;
+  font-weight: normal-font-weight;
+  font-size: main-font-size;
+  line-height: main-line-height;
 }
 
 .title {

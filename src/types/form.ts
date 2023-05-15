@@ -44,6 +44,19 @@ export type FormConfig = {
    */
   description?: string;
   /**
+   * Submission after send button
+   */
+  submission?: {
+    /**
+     * Text after succesful request
+     */
+    success: string;
+    /**
+     * Text after error request
+     */
+    error: string;
+  };
+  /**
    * Fields in Form
    */
   items: Array<{

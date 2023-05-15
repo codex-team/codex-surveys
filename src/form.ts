@@ -3,12 +3,14 @@ import {
   createLabel,
   createDescription,
   createSubmit,
-  buildField,
+  buildField
 } from './utils/createField';
-import { IconCross } from '@codexteam/icons';
+import { IconCross, IconLoader } from '@codexteam/icons';
 import classes from './styles/form.module.css';
 import { FormConfig } from './types/form';
 import { WidgetConfig } from './types/widget';
+
+const WIDGET_CLOSE_TIME = 5000;
 
 /**
  * Class for creating Feedback form
@@ -18,6 +20,11 @@ export class Form {
    * Form container
    */
   private form: HTMLFormElement;
+
+  /**
+   * Collapsed form container
+   */
+  private formCollapsed: HTMLDivElement;
 
   /**
    * Widget container
@@ -42,13 +49,13 @@ export class Form {
    */
   constructor(
     configuration: { form: FormConfig; widget: WidgetConfig },
-    onSubmitEvent?: (data: Record<string, FormDataEntryValue>) => void
+    onSubmitEvent?: (data: Record<string, FormDataEntryValue>) => Promise<void>
   ) {
     this.fullFormConfiguration = configuration.form;
     this.widgetConfiguration = configuration.widget;
     this.container = make('div', classes.container);
     this.form = this.createOpenForm(onSubmitEvent);
-    this.createMinimizedForm();
+    this.formCollapsed = this.createCollapsedForm();
   }
 
   /**
@@ -68,8 +75,8 @@ export class Form {
   /**
    * Create and add collapsed form to document
    */
-  private createMinimizedForm(): void {
-    const formCollapsed = make('div', classes.collapsed);
+  private createCollapsedForm(): HTMLDivElement {
+    const formCollapsed = make('div', classes.collapsed) as HTMLDivElement;
 
     if (this.widgetConfiguration.title) {
       const titleContainer = make('span', classes.title, {
@@ -98,23 +105,75 @@ export class Form {
         this.openWidget();
       }
     });
+
+    return formCollapsed;
   }
 
   /**
    * Create close button
    *
+   * @param onClick - Actions on close click
    * @returns {HTMLButtonElement}
    */
-  private createClose(): HTMLButtonElement {
-    const closeContainer = make('button', classes.close) as HTMLButtonElement;
+  private createClose(onClick?: () => void): HTMLButtonElement {
+    const closeContainer = make('button', classes.close, {
+      type: 'button',
+    }) as HTMLButtonElement;
 
     closeContainer.innerHTML = IconCross;
 
-    closeContainer.addEventListener('click', () => {
-      this.collapseWidget();
+    closeContainer.addEventListener('click', (e) => {
+      e.stopPropagation();
+      onClick?.();
     });
 
     return closeContainer;
+  }
+
+  /**
+   * Create notification after submit
+   *
+   * @param submitPromise - Promise created by submit
+   */
+  private createSubmitNotification(submitPromise: Promise<void>): void {
+    this.formCollapsed.replaceChildren();
+    const submission = this.fullFormConfiguration.submission;
+    const notificationContainer = make('span', classes.notification);
+
+    notificationContainer.innerHTML = IconLoader;
+
+    this.formCollapsed.append(notificationContainer);
+
+    const autoClose = (): void => {
+      this.container.classList.add(classes.hidden);
+    };
+
+    submitPromise
+      .finally(() => {
+        notificationContainer.innerHTML = '';
+        this.formCollapsed.appendChild(this.createClose());
+        setTimeout(autoClose, WIDGET_CLOSE_TIME);
+      })
+      .then(() => {
+        notificationContainer.appendChild(
+          make('div', classes.successIcon, {
+            textContent: '🎉',
+          })
+        );
+
+        notificationContainer.appendChild(
+          make('div', classes.notificationContent, {
+            textContent: submission?.success || '',
+          })
+        );
+      })
+      .catch(() => {
+        notificationContainer.appendChild(
+          make('div', classes.notificationContent, {
+            textContent: submission?.error || '',
+          })
+        );
+      });
   }
 
   /**
@@ -123,11 +182,15 @@ export class Form {
    * @param onSubmitEvent - Submit event for sending data
    */
   private createOpenForm(
-    onSubmitEvent?: (e: Record<string, FormDataEntryValue>) => void
+    onSubmitEvent?: (e: Record<string, FormDataEntryValue>) => Promise<void>
   ): HTMLFormElement {
     const form = make('form', classes.form) as HTMLFormElement;
 
-    form.appendChild(this.createClose());
+    form.appendChild(
+      this.createClose(() => {
+        this.collapseWidget();
+      })
+    );
 
     if (this.fullFormConfiguration.description) {
       form.appendChild(
@@ -161,8 +224,13 @@ export class Form {
           new FormData(this.form || undefined).entries()
         );
 
-        onSubmitEvent(data);
+        const submitPromise = onSubmitEvent(data);
+
         this.collapseWidget();
+
+        if (this.fullFormConfiguration.submission) {
+          this.createSubmitNotification(submitPromise);
+        }
       }
     });
 
