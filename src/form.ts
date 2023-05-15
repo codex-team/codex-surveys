@@ -55,7 +55,7 @@ export class Form {
     this.widgetConfiguration = configuration.widget;
     this.container = make('div', classes.container);
     this.form = this.createOpenForm(onSubmitEvent);
-    this.formCollapsed = this.createMinimizedForm();
+    this.formCollapsed = this.createCollapsedForm();
   }
 
   /**
@@ -75,7 +75,7 @@ export class Form {
   /**
    * Create and add collapsed form to document
    */
-  private createMinimizedForm(): HTMLDivElement {
+  private createCollapsedForm(): HTMLDivElement {
     const formCollapsed = make('div', classes.collapsed) as HTMLDivElement;
 
     if (this.widgetConfiguration.title) {
@@ -226,11 +226,10 @@ export class Form {
 
         const submitPromise = onSubmitEvent(data);
 
+        this.collapseWidget();
+
         if (this.fullFormConfiguration.submission) {
-          this.collapseWidget();
           this.createSubmitNotification(submitPromise);
-        } else {
-          this.collapseWidget();
         }
       }
     });
